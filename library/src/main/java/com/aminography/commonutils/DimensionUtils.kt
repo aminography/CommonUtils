@@ -3,6 +3,7 @@
 package com.aminography.commonutils
 
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Point
 import android.view.WindowManager
 
@@ -18,3 +19,6 @@ val Context.screenSize: Point
     get() = Point().also {
         (getSystemService(Context.WINDOW_SERVICE) as? WindowManager)?.defaultDisplay?.getSize(it)
     }
+
+val Context.isDisplayPortrait: Boolean
+    get() = (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)

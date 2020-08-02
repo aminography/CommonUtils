@@ -1,4 +1,4 @@
-package com.aminography.commonutils.sample
+package com.aminography.commonutils
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
