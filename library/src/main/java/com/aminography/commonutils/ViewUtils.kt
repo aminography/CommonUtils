@@ -32,8 +32,8 @@ fun View.gone() = if (visibility != View.GONE) visibility = View.GONE else Unit
 
 fun LayoutInflater.inflate(@LayoutRes layoutResId: Int): View = inflate(layoutResId, null)
 
-fun ProgressBar.setColor(context: Context, @ColorRes colorResId: Int) =
-    DrawableCompat.setTint(this.indeterminateDrawable, context.getColorCompat(colorResId))
+fun ProgressBar.setColor(@ColorRes colorResId: Int) =
+    DrawableCompat.setTint(indeterminateDrawable, context.getColorCompat(colorResId))
 
 @Suppress("DEPRECATION")
 @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
