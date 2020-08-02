@@ -2,8 +2,10 @@
 
 package com.aminography.commonutils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.PorterDuff
+import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.text.SpannableStringBuilder
@@ -19,9 +21,13 @@ import android.widget.ProgressBar
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.annotation.*
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.ViewPropertyAnimatorCompat
+import androidx.core.widget.TextViewCompat
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 
 /**
@@ -87,6 +93,44 @@ fun NumberPicker.setDividerColor(@ColorInt color: Int) {
                 e.printStackTrace()
             }
             break
+        }
+    }
+}
+
+fun BottomNavigationView.applyFont(fontPath: String) {
+    val typeface = Typeface.createFromAsset(context.assets, fontPath)
+    for (i in 0 until childCount) {
+        val child = getChildAt(i)
+        if (child is BottomNavigationMenuView) {
+            for (j in 0 until child.childCount) {
+                val item = child.getChildAt(j)
+
+                val smallItemText = item.findViewById<View>(R.id.smallLabel)
+                if (smallItemText is TextView) smallItemText.typeface = typeface
+
+                val largeItemText = item.findViewById<View>(R.id.largeLabel)
+                if (largeItemText is TextView) largeItemText.typeface = typeface
+            }
+        }
+    }
+}
+
+fun TabLayout.applyFont(fontPath: String) {
+    val typeface = Typeface.createFromAsset(context.assets, fontPath)
+    val viewGroup = getChildAt(0) as ViewGroup
+    val tabsCount = viewGroup.childCount
+    for (j in 0 until tabsCount) {
+        val viewGroupChildAt = viewGroup.getChildAt(j) as ViewGroup
+        val tabChildCount = viewGroupChildAt.childCount
+        for (i in 0 until tabChildCount) {
+            val tabViewChild = viewGroupChildAt.getChildAt(i)
+            if (tabViewChild is AppCompatTextView) {
+                TextViewCompat.setAutoSizeTextTypeWithDefaults(
+                    tabViewChild,
+                    TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM
+                )
+                tabViewChild.setTypeface(typeface, Typeface.NORMAL)
+            }
         }
     }
 }
