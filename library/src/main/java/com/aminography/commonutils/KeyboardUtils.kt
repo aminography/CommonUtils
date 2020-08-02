@@ -12,14 +12,14 @@ import androidx.fragment.app.Fragment
  * @author aminography
  */
 
-fun EditText.hideKeyboard(): Boolean {
-    return (context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)
-        .hideSoftInputFromWindow(windowToken, 0)
-}
-
 fun EditText.showKeyboard(): Boolean {
     return (context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)
         .showSoftInput(this, 0)
+}
+
+fun EditText.hideKeyboard(): Boolean {
+    return (context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)
+        .hideSoftInputFromWindow(windowToken, 0)
 }
 
 fun Activity.hideKeyboard(): Boolean {
