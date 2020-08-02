@@ -18,15 +18,16 @@ val Context.isNetworkAvailable: Boolean
         return !isDozing(this) && networkInfo.state == NetworkInfo.State.CONNECTED && networkInfo.isConnected
     }
 
-private fun Context.getNetworkStatus(): NetworkStatus {
-    if (isDozing(this)) return NetworkStatus.DISCONNECTED
-    (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).let {
-        val networkInfo = it.activeNetworkInfo ?: return NetworkStatus.DISCONNECTED
-        return if (networkInfo.type == ConnectivityManager.TYPE_WIFI || networkInfo.type == ConnectivityManager.TYPE_ETHERNET) {
-            NetworkStatus.UNMETERED
-        } else NetworkStatus.METERED
+val Context.networkStatus: NetworkStatus
+    get() {
+        if (isDozing(this)) return NetworkStatus.DISCONNECTED
+        (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).let {
+            val networkInfo = it.activeNetworkInfo ?: return NetworkStatus.DISCONNECTED
+            return if (networkInfo.type == ConnectivityManager.TYPE_WIFI || networkInfo.type == ConnectivityManager.TYPE_ETHERNET) {
+                NetworkStatus.UNMETERED
+            } else NetworkStatus.METERED
+        }
     }
-}
 
 /**
  * Returns true if the device is in Doze/Idle mode. Should be called before checking the network
@@ -40,7 +41,7 @@ private fun isDozing(context: Context): Boolean {
     } else false
 }
 
-private enum class NetworkStatus {
+enum class NetworkStatus {
     DISCONNECTED,
     METERED,
     UNMETERED
