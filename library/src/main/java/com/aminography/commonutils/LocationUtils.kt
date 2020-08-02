@@ -23,8 +23,7 @@ fun LatLng.distanceTo(other: LatLng): Double {
     val lat1 = degreesToRadians(latitude)
     val lat2 = degreesToRadians(other.latitude)
 
-    val a =
-        sin(dLat / 2) * sin(dLat / 2) + sin(dLon / 2) * sin(dLon / 2) * cos(lat1) * cos(lat2)
+    val a = sin(dLat / 2) * sin(dLat / 2) + sin(dLon / 2) * sin(dLon / 2) * cos(lat1) * cos(lat2)
     val c = 2 * atan2(sqrt(a), sqrt(1 - a))
     return earthRadiusKm * c
 }
