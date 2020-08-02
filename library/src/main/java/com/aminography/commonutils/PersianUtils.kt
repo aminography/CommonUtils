@@ -7,20 +7,16 @@ package com.aminography.commonutils
  */
 
 val String.withPersianDigits: String
-    get() = StringBuilder().also {
-        for (c in toCharArray()) {
-            if (Character.isDigit(c))
-                it.append(PERSIAN_DIGITS["$c".toInt()])
-            else it.append(c)
+    get() = StringBuilder().also { builder ->
+        toCharArray().forEach {
+            builder.append(if (Character.isDigit(it)) PERSIAN_DIGITS["$it".toInt()] else it)
         }
     }.toString()
 
 val Number.withPersianDigits: String
-    get() = StringBuilder().also {
-        for (c in "$this".toCharArray()) {
-            if (Character.isDigit(c))
-                it.append(PERSIAN_DIGITS["$c".toInt()])
-            else it.append(c)
+    get() = StringBuilder().also { builder ->
+        "$this".toCharArray().forEach {
+            builder.append(if (Character.isDigit(it)) PERSIAN_DIGITS["$it".toInt()] else it)
         }
     }.toString()
 
