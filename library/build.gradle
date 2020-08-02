@@ -79,7 +79,7 @@ ext {
     libraryVersion = "1.0.0"
 
     libraryName = 'CommonUtils'
-    libraryDescription = 'CommonUtils contains common utility functions in an Android app.'
+    libraryDescription = 'CommonUtils contains common utility functions in Android apps.'
 
     siteUrl = 'https://github.com/aminography/CommonUtils'
     gitUrl = 'https://github.com/aminography/CommonUtils.git'
