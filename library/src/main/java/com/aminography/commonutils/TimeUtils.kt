@@ -8,13 +8,14 @@ import java.util.concurrent.TimeUnit
  * @author aminography
  */
 
-fun formatDuration(duration: Long): String {
-    fun normalize(number: Int): String = String.format("%02d", number)
+val Long.formatDuration: String
+    get() {
+        fun normalize(number: Long): String = String.format("%02d", number)
 
-    val seconds = (TimeUnit.MILLISECONDS.toSeconds(duration) % 60).toInt()
-    val minutes = (TimeUnit.MILLISECONDS.toMinutes(duration) % 60).toInt()
-    return when (val hours = (TimeUnit.MILLISECONDS.toHours(duration)).toInt()) {
-        0 -> "${normalize(minutes)}:${normalize(seconds)}"
-        else -> "${normalize(hours)}:${normalize(minutes)}:${normalize(seconds)}"
+        val seconds = TimeUnit.MILLISECONDS.toSeconds(this) % 60
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(this) % 60
+        return when (val hours = TimeUnit.MILLISECONDS.toHours(this)) {
+            0L -> "${normalize(minutes)}:${normalize(seconds)}"
+            else -> "${normalize(hours)}:${normalize(minutes)}:${normalize(seconds)}"
+        }
     }
-}
