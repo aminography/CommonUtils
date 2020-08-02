@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.aminography.commonutils
 
 import android.content.Context
