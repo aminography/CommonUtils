@@ -34,9 +34,6 @@ val Long.formatAsFileSize: String
 val Long.groupDigits: String
     get() = decimalFormat.format(this)
 
-val Int.groupDigits: String
-    get() = decimalFormat.format(this)
-
 private const val B = 1
 private const val KB = B * 1024
 private const val MB = KB * 1024
