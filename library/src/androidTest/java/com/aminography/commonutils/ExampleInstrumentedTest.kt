@@ -1,4 +1,4 @@
-package com.aminography.commonutils.sample
+package com.aminography.commonutils
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -17,7 +17,7 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.aminography.commonutils.sample", appContext.packageName)
+        assertEquals("com.aminography.commonutils", appContext.packageName)
     }
 }
 
