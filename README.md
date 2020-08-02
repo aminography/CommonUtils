@@ -1,5 +1,7 @@
 # `CommonUtils` :zap:
 
+**`CommonUtils`** contains common utility functions in Android apps.
+
 License
 --------
 ```
