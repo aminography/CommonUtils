@@ -50,7 +50,5 @@ fun MenuItem.iconifyTitle(context: Context, title: String, @DrawableRes iconResI
             1,
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-    }.let {
-        setTitle(it)
-    }
+    }.let { setTitle(it) }
 }

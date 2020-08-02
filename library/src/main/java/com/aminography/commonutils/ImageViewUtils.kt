@@ -41,22 +41,16 @@ fun ImageView.loadImage(
     url: String?,
     @DrawableRes placeholderResId: Int? = null,
     circleCrop: Boolean = false
-) =
-    Glide.with(context)
-        .load(url)
-        .also { builder ->
-            placeholderResId?.let { builder.apply(RequestOptions.placeholderOf(it)) }
-            circleCrop.takeIf { it }?.let { builder.apply(RequestOptions.circleCropTransform()) }
-        }.into(this)
+) = Glide.with(context).load(url).also { builder ->
+    placeholderResId?.let { builder.apply(RequestOptions.placeholderOf(it)) }
+    circleCrop.takeIf { it }?.let { builder.apply(RequestOptions.circleCropTransform()) }
+}.into(this)
 
 fun ImageView.loadImage(
     @DrawableRes drawableResId: Int,
     @DrawableRes placeholderResId: Int? = null,
     circleCrop: Boolean = false
-) =
-    Glide.with(context)
-        .load(drawableResId)
-        .also { builder ->
-            placeholderResId?.let { builder.apply(RequestOptions.placeholderOf(it)) }
-            circleCrop.takeIf { it }?.let { builder.apply(RequestOptions.circleCropTransform()) }
-        }.into(this)
+) = Glide.with(context).load(drawableResId).also { builder ->
+    placeholderResId?.let { builder.apply(RequestOptions.placeholderOf(it)) }
+    circleCrop.takeIf { it }?.let { builder.apply(RequestOptions.circleCropTransform()) }
+}.into(this)
