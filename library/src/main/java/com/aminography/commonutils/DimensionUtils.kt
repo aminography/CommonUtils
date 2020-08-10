@@ -2,12 +2,26 @@
 
 package com.aminography.commonutils
 
-import android.content.Context
+import android.content.res.Resources
+import android.graphics.Rect
+import android.graphics.RectF
 
 /**
  * @author aminography
  */
 
-fun Context.dp2px(dp: Float): Float = dp * resources.displayMetrics.density
+val Number.dp2px: Float
+    get() = this.toFloat() * Resources.getSystem().displayMetrics.density
 
-fun Context.px2dp(px: Float): Float = px / resources.displayMetrics.density
+val Number.px2dp: Float
+    get() = this.toFloat() / Resources.getSystem().displayMetrics.density
+
+val screenSizePx: Rect
+    get() = Resources.getSystem().displayMetrics.run {
+        Rect(0, 0, widthPixels, heightPixels)
+    }
+
+val screenSizeDp: RectF
+    get() = Resources.getSystem().displayMetrics.run {
+        RectF(0f, 0f, widthPixels / xdpi, heightPixels / ydpi)
+    }
