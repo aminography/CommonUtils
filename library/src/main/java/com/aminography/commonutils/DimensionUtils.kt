@@ -5,23 +5,27 @@ package com.aminography.commonutils
 import android.content.res.Resources
 import android.graphics.Rect
 import android.graphics.RectF
+import android.util.DisplayMetrics
+import kotlin.math.roundToInt
 
 /**
  * @author aminography
  */
 
-val Number.dp2px: Float
-    get() = this.toFloat() * Resources.getSystem().displayMetrics.density
+private val displayMetrics: DisplayMetrics by lazy { Resources.getSystem().displayMetrics }
+
+val Number.dp2px: Int
+    get() = (this.toFloat() * displayMetrics.density).roundToInt()
 
 val Number.px2dp: Float
-    get() = this.toFloat() / Resources.getSystem().displayMetrics.density
+    get() = this.toFloat() / displayMetrics.density
 
-val screenSizePx: Rect
-    get() = Resources.getSystem().displayMetrics.run {
+val screenRectPx: Rect
+    get() = displayMetrics.run {
         Rect(0, 0, widthPixels, heightPixels)
     }
 
-val screenSizeDp: RectF
-    get() = Resources.getSystem().displayMetrics.run {
+val screenRectDp: RectF
+    get() = displayMetrics.run {
         RectF(0f, 0f, widthPixels / xdpi, heightPixels / ydpi)
     }
