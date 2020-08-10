@@ -6,20 +6,13 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
-import android.graphics.Point
 import android.os.Build
 import android.provider.Settings
 import android.telephony.TelephonyManager
-import android.view.WindowManager
 
 /**
  * @author aminography
  */
-
-val Context.screenSize: Point
-    get() = Point().also {
-        (getSystemService(Context.WINDOW_SERVICE) as? WindowManager)?.defaultDisplay?.getSize(it)
-    }
 
 val Context.isDisplayPortrait: Boolean
     get() = (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
