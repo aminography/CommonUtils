@@ -27,17 +27,19 @@ val Long.formatAsFileSize: String
     get() = when {
         this < KB -> String.format(Locale.getDefault(), "%.1f B", toDouble())
         this < MB -> String.format(Locale.getDefault(), "%.1f KB", toDouble() / KB)
-        this < GB -> String.format(Locale.getDefault(), "%.2f MB", toDouble() / MB)
-        else -> String.format(Locale.getDefault(), "%.2f GB", toDouble() / GB)
+        this < GB -> String.format(Locale.getDefault(), "%.1f MB", toDouble() / MB)
+        this < TB -> String.format(Locale.getDefault(), "%.2f GB", toDouble() / GB)
+        else -> String.format(Locale.getDefault(), "%.2f TB", toDouble() / TB)
     }
 
 val Long.groupDigits: String
     get() = decimalFormat.format(this)
 
-private const val B = 1
+private const val B = 1L
 private const val KB = B * 1024
 private const val MB = KB * 1024
 private const val GB = MB * 1024
+private const val TB = GB * 1024
 
 private val decimalFormat = DecimalFormat()
     .apply {
