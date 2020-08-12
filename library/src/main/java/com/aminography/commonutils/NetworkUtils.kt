@@ -2,23 +2,27 @@
 
 package com.aminography.commonutils
 
+import android.Manifest
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Build
 import android.os.PowerManager
+import androidx.annotation.RequiresPermission
 
 /**
  * @author aminography
  */
 
 val Context.isNetworkAvailable: Boolean
+    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     get() = (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).let {
         val networkInfo = it.activeNetworkInfo ?: return false
         return !isDozing(this) && networkInfo.state == NetworkInfo.State.CONNECTED && networkInfo.isConnected
     }
 
 val Context.networkStatus: NetworkStatus
+    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     get() {
         if (isDozing(this)) return NetworkStatus.DISCONNECTED
         (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).let {

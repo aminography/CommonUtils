@@ -9,6 +9,7 @@ import android.content.res.Configuration
 import android.os.Build
 import android.provider.Settings
 import android.telephony.TelephonyManager
+import androidx.annotation.RequiresPermission
 
 /**
  * @author aminography
@@ -22,7 +23,8 @@ val Context.androidId: String
     get() = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 
 val Context.deviceIMEI: String
-    @SuppressLint("MissingPermission", "HardwareIds")
+    @SuppressLint("HardwareIds")
+    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     get() {
         var uniqueIdentifier = ""
         val telephonyManager = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
