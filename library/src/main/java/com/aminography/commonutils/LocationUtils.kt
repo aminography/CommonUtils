@@ -15,6 +15,7 @@ import kotlin.math.sqrt
 fun LatLng.distanceTo(other: LatLng): Double {
     fun degreesToRadians(degrees: Double): Double = degrees * Math.PI / 180.0
 
+    // https://en.wikipedia.org/wiki/Earth_radius#Mean_radius
     val earthRadiusKm = 6371
 
     val dLat = degreesToRadians(other.latitude - latitude)
