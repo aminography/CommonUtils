@@ -11,6 +11,8 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -19,6 +21,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -34,6 +41,9 @@ dependencies {
 
     // ------- Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    // ------- Multidex
+    implementation "androidx.multidex:multidex:$multidex_version"
 
     // ------- Test
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version"

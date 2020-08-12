@@ -12,6 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -40,6 +41,9 @@ dependencies {
 
     // ------- Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version@jar"
+
+    // ------- Multidex
+    implementation "androidx.multidex:multidex:$multidex_version"
 
     // ------- Test
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version"
