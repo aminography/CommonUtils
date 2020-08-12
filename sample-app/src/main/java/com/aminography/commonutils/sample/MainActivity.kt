@@ -23,8 +23,9 @@ class MainActivity : AppCompatActivity() {
         val heightDp = screenRectDp.height()
         println("[DP] screen width: $widthDp , height: $heightDp")
 
-        println("Numeric 15   becomes: " + 15.withPersianDigits)
-        println("Numeric 2.75 becomes: " + 2.75.withPersianDigits)
+        println("Numerical 15   becomes: " + 15.withPersianDigits)
+        println("Numerical 2.75 becomes: " + 2.75.withPersianDigits)
+
         println("Textual 470  becomes: " + "470".withPersianDigits)
         println("Textual 3.14 becomes: " + "3.14".withPersianDigits)
     }
