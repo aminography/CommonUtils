@@ -15,14 +15,14 @@ import androidx.annotation.RequiresPermission
  */
 
 val Context.isNetworkAvailable: Boolean
-    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
+    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     get() = (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).let {
         val networkInfo = it.activeNetworkInfo ?: return false
         return !isDozing(this) && networkInfo.state == NetworkInfo.State.CONNECTED && networkInfo.isConnected
     }
 
 val Context.networkStatus: NetworkStatus
-    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
+    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     get() {
         if (isDozing(this)) return NetworkStatus.DISCONNECTED
         (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).let {
