@@ -12,6 +12,8 @@ import kotlin.math.sqrt
  * @author aminography
  */
 
+// Check this too:
+// https://googlemaps.github.io/android-maps-utils/javadoc/com/google/maps/android/SphericalUtil.html
 fun LatLng.distanceTo(other: LatLng): Double {
     fun degreesToRadians(degrees: Double): Double = degrees * Math.PI / 180.0
 

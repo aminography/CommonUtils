@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.aminography.commonutils.screenRectDp
 import com.aminography.commonutils.screenRectPx
+import com.aminography.commonutils.withPersianDigits
 
 /**
  * @author aminography
@@ -21,5 +22,10 @@ class MainActivity : AppCompatActivity() {
         val widthDp = screenRectDp.width()
         val heightDp = screenRectDp.height()
         println("[DP] screen width: $widthDp , height: $heightDp")
+
+        println("Numeric 15   becomes: " + 15.withPersianDigits)
+        println("Numeric 2.75 becomes: " + 2.75.withPersianDigits)
+        println("Textual 470  becomes: " + "470".withPersianDigits)
+        println("Textual 3.14 becomes: " + "3.14".withPersianDigits)
     }
 }

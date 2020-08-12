@@ -6,17 +6,19 @@ package com.aminography.commonutils
  * @author aminography
  */
 
+val Number.withPersianDigits: String
+    get() = "$this".withPersianDigits
+
 val String.withPersianDigits: String
     get() = StringBuilder().also { builder ->
         toCharArray().forEach {
-            builder.append(if (Character.isDigit(it)) PERSIAN_DIGITS["$it".toInt()] else it)
-        }
-    }.toString()
-
-val Number.withPersianDigits: String
-    get() = StringBuilder().also { builder ->
-        "$this".toCharArray().forEach {
-            builder.append(if (Character.isDigit(it)) PERSIAN_DIGITS["$it".toInt()] else it)
+            builder.append(
+                when {
+                    Character.isDigit(it) -> PERSIAN_DIGITS["$it".toInt()]
+                    it == '.' -> "/"
+                    else -> it
+                }
+            )
         }
     }.toString()
 
