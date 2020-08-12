@@ -2,6 +2,7 @@ package com.aminography.commonutils.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.aminography.commonutils.formatAsFileSize
 import com.aminography.commonutils.screenRectDp
 import com.aminography.commonutils.screenRectPx
 import com.aminography.commonutils.withPersianDigits
@@ -28,5 +29,11 @@ class MainActivity : AppCompatActivity() {
 
         println("Textual 470  becomes: " + "470".withPersianDigits)
         println("Textual 3.14 becomes: " + "3.14".withPersianDigits)
+
+        println("170:        " + 170.formatAsFileSize)
+        println("14356:      " + 14356.formatAsFileSize)
+        println("968542985:  " + 968542985.formatAsFileSize)
+        println("8729842496: " + 8729842496.formatAsFileSize)
     }
 }
+
