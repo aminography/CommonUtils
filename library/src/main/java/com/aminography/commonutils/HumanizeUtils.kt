@@ -34,7 +34,7 @@ val Long.formatAsFileSize: String
         val precision = when (it) {
             0 -> 0; 1 -> 1; else -> 2
         }
-        val prefix = arrayOf("", "K", "M", "G", "T", "P", "E")
+        val prefix = arrayOf("", "K", "M", "G", "T", "P", "E", "Z", "Y")
         String.format("%.${precision}f ${prefix[it]}B", toDouble() / 2.0.pow(it * 10.0))
     }
 
