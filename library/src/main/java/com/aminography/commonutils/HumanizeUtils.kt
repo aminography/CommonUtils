@@ -4,8 +4,9 @@ package com.aminography.commonutils
 
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
-import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.math.log2
+import kotlin.math.pow
 
 /**
  * @author aminography
@@ -29,23 +30,13 @@ val Int.formatAsFileSize: String
     get() = toLong().formatAsFileSize
 
 val Long.formatAsFileSize: String
-    get() = when {
-        this < KB -> String.format(Locale.getDefault(), "%d B", this)
-        this < MB -> String.format(Locale.getDefault(), "%.1f KB", toDouble() / KB)
-        this < GB -> String.format(Locale.getDefault(), "%.1f MB", toDouble() / MB)
-        this < TB -> String.format(Locale.getDefault(), "%.2f GB", toDouble() / GB)
-        this < PB -> String.format(Locale.getDefault(), "%.2f TB", toDouble() / TB)
-        this < EB -> String.format(Locale.getDefault(), "%.2f PB", toDouble() / PB)
-        else -> String.format(Locale.getDefault(), "%.2f EB", toDouble() / EB)
+    get() = log2(toDouble()).toInt().div(10).let {
+        val precision = when (it) {
+            0 -> 0; 1 -> 1; else -> 2
+        }
+        val prefix = arrayOf("", "K", "M", "G", "T", "P", "E")
+        String.format("%.${precision}f ${prefix[it]}B", toDouble() / 2.0.pow(it * 10.0))
     }
-
-private const val B = 1L
-private const val KB = B * 1024
-private const val MB = KB * 1024
-private const val GB = MB * 1024
-private const val TB = GB * 1024
-private const val PB = TB * 1024
-private const val EB = PB * 1024
 
 val Long.groupDigits: String
     get() = decimalFormat.format(this)
