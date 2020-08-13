@@ -22,6 +22,9 @@ val File.baseName: String
 val File.extension: String
     get() = name.substringAfterLast('.', "")
 
+val File.formatSize: String
+    get() = length().formatAsFileSize
+
 fun Context.getExternalFile(sourceFile: File): File =
     File(getExternalFilesDir(null), sourceFile.name)
 

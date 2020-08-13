@@ -4,14 +4,17 @@ package com.aminography.commonutils
 
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
-import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.math.log2
+import kotlin.math.pow
 
 /**
  * @author aminography
  */
 
-val Long.formatAsDuration: String
+// Also see:
+// https://developer.android.com/reference/android/text/format/DateUtils.html#formatElapsedTime(long)
+val Long.formatMsAsDuration: String
     get() {
         fun normalize(number: Long): String = String.format("%02d", number)
 
@@ -23,21 +26,20 @@ val Long.formatAsDuration: String
         }
     }
 
+val Int.formatAsFileSize: String
+    get() = toLong().formatAsFileSize
+
 val Long.formatAsFileSize: String
-    get() = when {
-        this < KB -> String.format(Locale.getDefault(), "%.1f B", toDouble())
-        this < MB -> String.format(Locale.getDefault(), "%.1f KB", toDouble() / KB)
-        this < GB -> String.format(Locale.getDefault(), "%.2f MB", toDouble() / MB)
-        else -> String.format(Locale.getDefault(), "%.2f GB", toDouble() / GB)
+    get() = log2(toDouble()).toInt().div(10).let {
+        val precision = when (it) {
+            0 -> 0; 1 -> 1; else -> 2
+        }
+        val prefix = arrayOf("", "K", "M", "G", "T", "P", "E")
+        String.format("%.${precision}f ${prefix[it]}B", toDouble() / 2.0.pow(it * 10.0))
     }
 
 val Long.groupDigits: String
     get() = decimalFormat.format(this)
-
-private const val B = 1
-private const val KB = B * 1024
-private const val MB = KB * 1024
-private const val GB = MB * 1024
 
 private val decimalFormat = DecimalFormat()
     .apply {
