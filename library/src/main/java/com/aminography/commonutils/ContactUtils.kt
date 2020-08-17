@@ -35,9 +35,9 @@ fun Context.isContactExists(
 @JvmOverloads
 fun Context.retrieveAllContacts(
     searchPattern: String = "",
+    retrieveAvatar: Boolean = true,
     limit: Int = -1,
-    offset: Int = -1,
-    retrieveAvatar: Boolean = true
+    offset: Int = -1
 ): List<ContactData> {
     val result: MutableList<ContactData> = mutableListOf()
     contentResolver.query(
