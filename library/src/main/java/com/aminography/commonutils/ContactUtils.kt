@@ -37,7 +37,7 @@ fun Context.retrieveAllContacts(
     searchPattern: String = "",
     limit: Int = -1,
     offset: Int = -1,
-    retrieveAvatar: Boolean = false
+    retrieveAvatar: Boolean = true
 ): List<ContactData> {
     val result: MutableList<ContactData> = mutableListOf()
     contentResolver.query(
