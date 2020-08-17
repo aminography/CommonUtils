@@ -32,6 +32,7 @@ fun Context.isContactExists(
 }
 
 @RequiresPermission(Manifest.permission.READ_CONTACTS)
+@JvmOverloads
 fun Context.retrieveAllContacts(
     searchPattern: String = "",
     limit: Int = -1,

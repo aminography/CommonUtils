@@ -17,6 +17,7 @@ import com.bumptech.glide.request.RequestOptions
  * @author aminography
  */
 
+@JvmOverloads
 fun ImageView.loadImage(
     url: String?,
     @DrawableRes placeholderResId: Int? = null,
@@ -28,6 +29,7 @@ fun ImageView.loadImage(
     circleCrop.takeIf { it }?.let { builder.apply(RequestOptions.circleCropTransform()) }
 }.into(this)
 
+@JvmOverloads
 fun ImageView.loadImage(
     uri: Uri?,
     @DrawableRes placeholderResId: Int? = null,
@@ -39,6 +41,7 @@ fun ImageView.loadImage(
     circleCrop.takeIf { it }?.let { builder.apply(RequestOptions.circleCropTransform()) }
 }.into(this)
 
+@JvmOverloads
 fun ImageView.loadImage(
     @DrawableRes drawableResId: Int,
     @DrawableRes placeholderResId: Int? = null,
@@ -50,6 +53,7 @@ fun ImageView.loadImage(
     circleCrop.takeIf { it }?.let { builder.apply(RequestOptions.circleCropTransform()) }
 }.into(this)
 
+@JvmOverloads
 fun ImageView.loadImage(
     image: Bitmap,
     @DrawableRes placeholderResId: Int? = null,
@@ -61,6 +65,7 @@ fun ImageView.loadImage(
     circleCrop.takeIf { it }?.let { builder.apply(RequestOptions.circleCropTransform()) }
 }.into(this)
 
+@JvmOverloads
 fun ImageView.loadImage(
     image: Drawable,
     @DrawableRes placeholderResId: Int? = null,

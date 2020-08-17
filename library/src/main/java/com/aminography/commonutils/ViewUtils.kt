@@ -2,7 +2,6 @@
 
 package com.aminography.commonutils
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.PorterDuff
 import android.graphics.Typeface
