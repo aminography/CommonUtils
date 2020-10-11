@@ -30,7 +30,7 @@ val Int.formatAsFileSize: String
     get() = toLong().formatAsFileSize
 
 val Long.formatAsFileSize: String
-    get() = log2(toDouble()).toInt().div(10).let {
+    get() = log2(if (this != 0L) toDouble() else 1.0).toInt().div(10).let {
         val precision = when (it) {
             0 -> 0; 1 -> 1; else -> 2
         }
