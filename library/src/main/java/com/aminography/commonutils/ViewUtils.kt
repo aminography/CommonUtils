@@ -6,6 +6,7 @@ import android.content.Context
 import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -41,6 +42,15 @@ fun View.gone() = if (visibility != View.GONE) visibility = View.GONE else Unit
 
 val View.animateCompat: ViewPropertyAnimatorCompat
     get() = ViewCompat.animate(this)
+
+fun View.setBackgroundDrawableCompat(drawable: Drawable) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+        background = drawable
+    } else {
+        @Suppress("DEPRECATION")
+        setBackgroundDrawable(drawable)
+    }
+}
 
 fun LayoutInflater.inflate(@LayoutRes layoutResId: Int): View = inflate(layoutResId, null)
 
