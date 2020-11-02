@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         println("Textual 470  becomes: " + "470".withPersianDigits)
         println("Textual 3.14 becomes: " + "3.14".withPersianDigits)
 
+        println("0:        " + 0.formatAsFileSize)
         println("170:        " + 170.formatAsFileSize)
         println("14356:      " + 14356.formatAsFileSize)
         println("968542985:  " + 968542985.formatAsFileSize)

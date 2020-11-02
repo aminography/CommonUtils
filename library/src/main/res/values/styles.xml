@@ -1,7 +1,0 @@
-<resources>
-
-    <style name="MyItemBackgroundStyle">
-        <item name="android:background">@drawable/ripple</item>
-    </style>
-
-</resources>
