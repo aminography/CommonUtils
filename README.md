@@ -2,6 +2,8 @@
 
 **`CommonUtils`** contains common utility functions in Android apps.
 
+[Take a quick look](library/src/main/java/com/aminography/commonutils).
+
 License
 --------
 ```
