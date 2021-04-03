@@ -48,13 +48,13 @@ val Context.physicalScreenRectDp: RectF
     get() = physicalScreenRectPx.run { RectF(0f, 0f, right.px2dp, bottom.px2dp) }
 
 /**
- * Converts any given number into density independent pixels (dp).
+ * Converts any given number from pixels (px) into density independent pixels (dp).
  */
 val Number.px2dp: Float
     get() = this.toFloat() / displayMetrics.density
 
 /**
- * Converts any given number into pixels (px).
+ * Converts any given number from density independent pixels (dp) into pixels (px).
  */
 val Number.dp2px: Int
     get() = (this.toFloat() * displayMetrics.density).roundToInt()
