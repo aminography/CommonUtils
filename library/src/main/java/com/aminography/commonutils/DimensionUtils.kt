@@ -35,7 +35,7 @@ val screenRectDp: RectF
  */
 val Context.physicalScreenRectPx: Rect
     get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-        (getSystemService(Context.WINDOW_SERVICE) as WindowManager)
+        (applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager)
             .run { DisplayMetrics().also { defaultDisplay.getRealMetrics(it) } }
             .run { Rect(0, 0, widthPixels, heightPixels) }
     } else screenRectPx

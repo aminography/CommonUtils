@@ -2,10 +2,11 @@ package com.aminography.commonutils.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.aminography.commonutils.formatAsFileSize
+import com.aminography.commonutils.physicalScreenRectDp
+import com.aminography.commonutils.physicalScreenRectPx
 import com.aminography.commonutils.screenRectDp
 import com.aminography.commonutils.screenRectPx
-import com.aminography.commonutils.withPersianDigits
+
 
 /**
  * @author aminography
@@ -24,17 +25,15 @@ class MainActivity : AppCompatActivity() {
         val heightDp = screenRectDp.height()
         println("[DP] screen width: $widthDp , height: $heightDp")
 
-        println("Numerical 15   becomes: " + 15.withPersianDigits)
-        println("Numerical 2.75 becomes: " + 2.75.withPersianDigits)
+        println()
 
-        println("Textual 470  becomes: " + "470".withPersianDigits)
-        println("Textual 3.14 becomes: " + "3.14".withPersianDigits)
+        val physicalWidthPx = physicalScreenRectPx.width()
+        val physicalHeightPx = physicalScreenRectPx.height()
+        println("[PX] physical screen width: $physicalWidthPx , height: $physicalHeightPx")
 
-        println("0:        " + 0.formatAsFileSize)
-        println("170:        " + 170.formatAsFileSize)
-        println("14356:      " + 14356.formatAsFileSize)
-        println("968542985:  " + 968542985.formatAsFileSize)
-        println("8729842496: " + 8729842496.formatAsFileSize)
+        val physicalWidthDp = physicalScreenRectDp.width()
+        val physicalHeightDp = physicalScreenRectDp.height()
+        println("[DP] physical screen width: $physicalWidthDp , height: $physicalHeightDp")
     }
 }
 
