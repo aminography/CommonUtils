@@ -8,7 +8,7 @@ apply from: rootProject.file('scripts/kotlin.gradle')
 
 android {
     defaultConfig {
-        applicationId "com.aminography.commonutils.sample"
+        applicationId "com.aminography.commonutils.sample_java"
         multiDexEnabled true
     }
 }
@@ -16,7 +16,7 @@ android {
 dependencies {
     implementation project(':library')
 
-    implementation dep.androidx.coreKtx
+    implementation dep.androidx.core
     implementation dep.multidex
     implementation dep.bundles.ui
 

@@ -1,4 +1,26 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
+apply from: rootProject.file('scripts/publish-root.gradle')
+
+buildscript {
+    apply from: rootProject.file('scripts/versions.gradle')
+
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    dependencies {
+        classpath plugin.android.gradle
+        classpath plugin.jetbrains.kotlin
+        classpath plugin.jetbrains.dokka
+        classpath plugin.nexus.publish
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
 
 buildscript {
     ext.kotlin_version = '1.4.0'
@@ -15,27 +37,4 @@ buildscript {
     ext.junit_jupiter_version = '5.4.2'
     ext.androidx_junit_version = '1.1.1'
     ext.androidx_espresso_version = '3.2.0'
-
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }

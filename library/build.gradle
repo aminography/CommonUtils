@@ -1,104 +1,38 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+apply from: rootProject.file('scripts/android.gradle')
+apply from: rootProject.file('scripts/kotlin.gradle')
 
 android {
-    compileSdkVersion 29
-
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+        consumerProguardFiles "consumer-rules.pro"
     }
 }
 
 dependencies {
-    // ------- Architecture
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation dep.androidx.coreKtx
+    implementation dep.guava
+    implementation dep.maps
+    implementation dep.timber
+    implementation dep.bundles.coroutines
+    implementation dep.bundles.glide
+    implementation dep.bundles.ui
 
-    // ------- AndroidX
-    implementation "androidx.core:core-ktx:$androidx_core_version"
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "com.google.android.material:material:$material_version"
-
-    // ------- Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-
-    // ------- Coroutine
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
-
-    // ------- Glide
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    kapt "com.github.bumptech.glide:compiler:$glide_version"
-
-    //---- Guava
-    implementation "com.google.guava:guava:$guava_version-android"
-
-    // ------- Maps
-    implementation "com.google.android.gms:play-services-maps:$maps_version"
-
-    // ------- Logger
-    implementation "com.jakewharton.timber:timber:$timber_version"
-
-    // ------- Test
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_jupiter_version"
-    androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_espresso_version"
+    testImplementation dep.junit.jupiter
+    testRuntimeOnly dep.junit.engine
+    androidTestImplementation dep.bundles.androidTest
 }
 
-repositories {
-    mavenCentral()
-}
+ext.publishInfo = [
+        groupId    : 'com.aminography',
+        artifactId : 'commonutils',
+        version    : libVersion.name,
+        description: 'CommonUtils contains common utility functions in Android apps.',
+        githubRepo : 'CommonUtils' /* https://github.com/aminography/# */
+]
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
-    }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'CommonUtils'
-    orgName = 'aminography'
-
-    publishedGroupId = 'com.aminography'
-    artifact = 'commonutils'
-    libraryVersion = "1.0.0"
-
-    libraryName = 'CommonUtils'
-    libraryDescription = 'CommonUtils contains common utility functions in Android apps.'
-
-    siteUrl = 'https://github.com/aminography/CommonUtils'
-    gitUrl = 'https://github.com/aminography/CommonUtils.git'
-
-    developerId = 'aminography'
-    developerName = 'Mohammad Amin Hassani'
-    developerEmail = 'aminography@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
-
-apply from: rootProject.file('gradle/install.gradle')
-apply from: rootProject.file('gradle/bintray-android.gradle')
+apply from: rootProject.file('scripts/publish-module.gradle')

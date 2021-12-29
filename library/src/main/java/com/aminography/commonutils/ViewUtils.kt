@@ -20,7 +20,11 @@ import android.widget.NumberPicker
 import android.widget.ProgressBar
 import android.widget.SeekBar
 import android.widget.TextView
-import androidx.annotation.*
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.ViewCompat
@@ -29,6 +33,7 @@ import androidx.core.widget.TextViewCompat
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.R
 
 /**
  * @author aminography
@@ -114,10 +119,10 @@ fun BottomNavigationView.applyFont(fontPath: String) {
             for (j in 0 until child.childCount) {
                 val item = child.getChildAt(j)
 
-                val smallItemText = item.findViewById<View>(R.id.smallLabel)
+                val smallItemText = item.findViewById<View>(R.id.navigation_bar_item_small_label_view)
                 if (smallItemText is TextView) smallItemText.typeface = typeface
 
-                val largeItemText = item.findViewById<View>(R.id.largeLabel)
+                val largeItemText = item.findViewById<View>(R.id.navigation_bar_item_large_label_view)
                 if (largeItemText is TextView) largeItemText.typeface = typeface
             }
         }
