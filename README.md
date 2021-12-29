@@ -4,6 +4,10 @@
 
 [Take a quick look](library/src/main/java/com/aminography/commonutils).
 
+dependencies {
+    implementation 'com.aminography:commonutils:1.1.0'
+}
+
 License
 --------
 ```
