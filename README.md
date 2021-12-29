@@ -1,12 +1,15 @@
 # `CommonUtils` :zap:
+![mavenCentral](https://img.shields.io/maven-central/v/com.aminography/commonutils?color=blue)
 
 **`CommonUtils`** contains common utility functions in Android apps.
 
 [Take a quick look](library/src/main/java/com/aminography/commonutils).
 
+```gradle
 dependencies {
     implementation 'com.aminography:commonutils:1.1.0'
 }
+```
 
 License
 --------
